@@ -1,5 +1,6 @@
 import App from "@/App";
 import CounterPage from "@/components/Pages/CounterPage";
+import TasksPage from "@/components/Pages/TasksPage";
 import { createBrowserRouter } from "react-router-dom";
 
 const routes = createBrowserRouter([
@@ -17,7 +18,7 @@ const routes = createBrowserRouter([
         },
         {
             path : 'Tasks',
-            element : <CounterPage></CounterPage>
+            element : <TasksPage></TasksPage>
         }
 
 

@@ -11,6 +11,9 @@ import { store } from './Redux/store.ts'
 
 
 createRoot(document.getElementById('root')!).render(
+ <div className=' min-h-screen'>
+
+ 
   <StrictMode>
   
 
@@ -40,4 +43,7 @@ createRoot(document.getElementById('root')!).render(
 
 
   </StrictMode>,
+
+
+ </div>
 )
