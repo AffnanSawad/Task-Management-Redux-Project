@@ -1,54 +1,96 @@
-# React + TypeScript + Vite
+Here’s a complete `README.md` file for your project, including a project overview, features, technologies used, and deployment link.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+### ✅ `README.md`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```md
+# Task Management App (Redux + TypeScript)
 
-## Expanding the ESLint configuration
+A simple and efficient task management application built using **React**, **Redux Toolkit**, and **TypeScript**. This app allows users to add, view, complete, and delete tasks with intuitive UI and smooth animations.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🔗 **Live Site:**  
+👉 [https://task-management-redux-project-wb4n.vercel.app/Tasks](https://task-management-redux-project-wb4n.vercel.app/Tasks)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🚀 Features
+
+- ✅ Add new tasks with title, description, due date, and priority
+- ✅ Mark tasks as completed
+- ✅ Delete tasks from the list
+- ✅ Priority-based styling (High, Medium, Low)
+- ✅ Smooth animations using Framer Motion
+- ✅ Redux Toolkit state management
+- ✅ TypeScript for static typing and safety
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, TypeScript, Tailwind CSS
+- **State Management:** Redux Toolkit
+- **Animations:** Framer Motion
+- **Deployment:** Vercel
+
+---
+
+## 📂 Project Structure
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+src/
+├── components/
+│   ├── AddTask.tsx
+│   ├── TaskCard.tsx
+│   └── Pages/
+│       └── TasksPage.tsx
+├── hooks/
+│   └── hooks.ts
+├── Redux/
+│   └── Features/
+│       └── Task/
+│           └── taskSlice.ts
+└── App.tsx
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+````
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🧪 How to Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/task-management-redux.git
+   cd task-management-redux
+````
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the project**
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open in browser:
+   [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 📦 Deployment
+
+This project is deployed using **Vercel**. You can view the live version [here](https://task-management-redux-project-wb4n.vercel.app/Tasks).
+
+---
+
+## 🙋‍♂️ Author
+
+Made with ❤️ by Affnan Sawad
+
+---
+
