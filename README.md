@@ -7,8 +7,7 @@
 A simple and efficient task management application built using **React**, **Redux Toolkit**, and **TypeScript**. This app allows users to add, view, complete, and delete tasks with intuitive UI and smooth animations.
 
 🔗 **Live Site:**  
-👉 [https://task-management-redux-project-wb4n.vercel.app/Tasks](https://task-management-redux-project-wb4n.vercel.app/Tasks)
-
+👉 https://task-management-redux-project-wb4n.vercel.app/Tasks
 ---
 
 ## 🚀 Features
