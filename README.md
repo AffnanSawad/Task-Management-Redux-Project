@@ -1,6 +1,3 @@
-Here’s a complete `README.md` file for your project, including a project overview, features, technologies used, and deployment link.
-
----
 
 ### ✅ `README.md`
 
