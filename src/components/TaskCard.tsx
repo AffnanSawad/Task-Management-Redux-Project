@@ -1,14 +1,26 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { deleteTask, completeTask } from "@/Redux/Features/Task/taskSlice";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 
-const TaskCard = ({ task }) => {
+// Define Task type
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  isCompleted: boolean;
+  priority: "High" | "Medium" | "Low";
+}
+
+interface TaskCardProps {
+  task: Task;
+}
+
+const TaskCard = ({ task }: TaskCardProps) => {
   const dispatch = useDispatch();
 
-  // State to toggle form visibility
   const [showSubmitForm, setShowSubmitForm] = useState(false);
-  // State for example input (you can expand this form as needed)
   const [submitNotes, setSubmitNotes] = useState("");
 
   const handleDelete = () => {
@@ -19,9 +31,8 @@ const TaskCard = ({ task }) => {
     setShowSubmitForm(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     dispatch(completeTask(task.id));
     setShowSubmitForm(false);
     setSubmitNotes("");

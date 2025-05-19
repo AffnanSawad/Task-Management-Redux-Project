@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useDispatch } from "react-redux";
 import { addTask } from "../Redux/Features/Task/taskSlice";
@@ -28,11 +28,22 @@ const AddTask = () => {
     priority: "Medium",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const target = e.target;
+    const name = target.name;
+
+    let value: string | boolean;
+    if (target instanceof HTMLInputElement && target.type === "checkbox") {
+      value = target.checked;
+    } else {
+      value = target.value;
+    }
+
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
@@ -62,32 +73,85 @@ const AddTask = () => {
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="id" className="text-right">ID</Label>
-            <Input id="id" name="id" value={formData.id} onChange={handleChange} className="col-span-3" required />
+            <Label htmlFor="id" className="text-right">
+              ID
+            </Label>
+            <Input
+              id="id"
+              name="id"
+              value={formData.id}
+              onChange={handleChange}
+              className="col-span-3"
+              required
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="title" className="text-right">Title</Label>
-            <Input id="title" name="title" value={formData.title} onChange={handleChange} className="col-span-3" required />
+            <Label htmlFor="title" className="text-right">
+              Title
+            </Label>
+            <Input
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className="col-span-3"
+              required
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="description" className="text-right">Description</Label>
-            <Input id="description" name="description" value={formData.description} onChange={handleChange} className="col-span-3" />
+            <Label htmlFor="description" className="text-right">
+              Description
+            </Label>
+            <Input
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className="col-span-3"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="dueDate" className="text-right">Due Date</Label>
-            <Input type="date" id="dueDate" name="dueDate" value={formData.dueDate} onChange={handleChange} className="col-span-3" required />
+            <Label htmlFor="dueDate" className="text-right">
+              Due Date
+            </Label>
+            <Input
+              type="date"
+              id="dueDate"
+              name="dueDate"
+              value={formData.dueDate}
+              onChange={handleChange}
+              className="col-span-3"
+              required
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="priority" className="text-right">Priority</Label>
-            <select id="priority" name="priority" value={formData.priority} onChange={handleChange} className="col-span-3 border rounded px-2 py-1">
+            <Label htmlFor="priority" className="text-right">
+              Priority
+            </Label>
+            <select
+              id="priority"
+              name="priority"
+              value={formData.priority}
+              onChange={handleChange}
+              className="col-span-3 border rounded px-2 py-1"
+            >
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
             </select>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="isCompleted" className="text-right">Completed</Label>
-            <input type="checkbox" id="isCompleted" name="isCompleted" checked={formData.isCompleted} onChange={handleChange} className="col-span-3" />
+            <Label htmlFor="isCompleted" className="text-right">
+              Completed
+            </Label>
+            <input
+              type="checkbox"
+              id="isCompleted"
+              name="isCompleted"
+              checked={formData.isCompleted}
+              onChange={handleChange}
+              className="col-span-3"
+            />
           </div>
           <DialogFooter>
             <Button type="submit">Save Task</Button>
