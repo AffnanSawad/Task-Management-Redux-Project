@@ -1,46 +1,119 @@
+import  { useState } from "react";
+import { deleteTask, completeTask } from "@/Redux/Features/Task/taskSlice";
+import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 
+const TaskCard = ({ task }) => {
+  const dispatch = useDispatch();
 
-const TaskCard = ({task}) => {
-    return (
-   <div className="max-w-md w-full bg-white rounded-xl shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-  <div className="flex justify-between items-start">
-    {/* Checkbox */}
-    <input
-      type="checkbox"
-      className="w-5 h-5 text-blue-600 border-gray-300 rounded mt-1"
-      aria-label={`Select ${task.title}`}
-    />
+  // State to toggle form visibility
+  const [showSubmitForm, setShowSubmitForm] = useState(false);
+  // State for example input (you can expand this form as needed)
+  const [submitNotes, setSubmitNotes] = useState("");
 
-    {/* Title */}
-    <h3 className="flex-1 ml-3 text-xl font-semibold text-gray-900">
-      {task.title}
-    </h3>
+  const handleDelete = () => {
+    dispatch(deleteTask(task.id));
+  };
 
-    {/* Delete button */}
-    <button
-      className="text-red-500 hover:text-red-700 text-2xl font-bold ml-2"
-      aria-label="Delete task"
+  const handleMarkAsSubmitClick = () => {
+    setShowSubmitForm(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(completeTask(task.id));
+    setShowSubmitForm(false);
+    setSubmitNotes("");
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4 }}
+      className={`max-w-md w-full rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl transition duration-300 ease-in-out
+        ${task.isCompleted ? "bg-green-50" : "bg-gradient-to-br from-white via-slate-50 to-slate-100"}`}
     >
-      &times;
-    </button>
-  </div>
+      {/* Top */}
+      <div className="flex justify-between items-start">
+        <div className="flex-1">
+          <h3 className={`text-xl font-bold mb-1 ${task.isCompleted ? "line-through text-gray-400" : "text-gray-800"}`}>
+            {task.title}
+          </h3>
+          <p className={`text-sm ${task.isCompleted ? "line-through text-gray-400" : "text-gray-600"}`}>
+            {task.description}
+          </p>
+        </div>
 
-  {/* Description */}
-  <p className="mt-3 text-gray-700">{task.description}</p>
+        {/* Delete button */}
+        <button
+          onClick={handleDelete}
+          className="text-red-500 hover:text-red-700 text-xl font-extrabold ml-4"
+          title="Delete task"
+        >
+          &times;
+        </button>
+      </div>
 
-  {/* Footer with Due Date and Priority */}
-  <div className="mt-4 flex justify-between items-center text-sm text-gray-500">
-    <span>Due: {task.dueDate}</span>
-    <span className="font-semibold">
-      Priority: <span className={`text-${task.priority === "High" ? "red" : task.priority === "Medium" ? "yellow" : "green"}-600`}>
-        {task.priority}
-      </span>
-    </span>
-  </div>
-</div>
+      {/* Bottom info */}
+      <div className="mt-5 flex justify-between items-center text-sm text-gray-500">
+        <span className="italic">📅 Due: {task.dueDate}</span>
+        <span className={`font-bold px-2 py-1 rounded-full
+          ${task.priority === "High" ? "bg-red-100 text-red-600" :
+            task.priority === "Medium" ? "bg-yellow-100 text-yellow-700" :
+            "bg-green-100 text-green-600"}`}>
+          {task.priority} Priority
+        </span>
+      </div>
 
-
-    );
+      {/* Submit form or button */}
+      <div className="mt-4">
+        {task.isCompleted ? (
+          <button
+            disabled
+            className="w-full py-2 rounded-md font-semibold bg-gray-400 text-white cursor-not-allowed"
+          >
+            Completed
+          </button>
+        ) : showSubmitForm ? (
+          <form onSubmit={handleSubmit} className="space-y-2">
+            <textarea
+              required
+              placeholder="Add submission notes..."
+              value={submitNotes}
+              onChange={(e) => setSubmitNotes(e.target.value)}
+              className="w-full border text-black border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              rows={3}
+            />
+            <div className="flex justify-end space-x-2">
+              <button
+                type="button"
+                onClick={() => setShowSubmitForm(false)}
+                className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-4 py-2 rounded-md bg-cyan-600 text-white hover:bg-red-700"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        ) : (
+          <button
+            onClick={handleMarkAsSubmitClick}
+            className="w-full py-2 rounded-md font-semibold bg-pink-400 text-white hover:bg-pink-700"
+          >
+            Mark as Submit
+          </button>
+        )}
+      </div>
+    </motion.div>
+  );
 };
 
 export default TaskCard;
