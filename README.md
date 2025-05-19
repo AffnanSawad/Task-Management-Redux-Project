@@ -1,7 +1,4 @@
 
-### ✅ `README.md`
-
-```md
 # Task Management App (Redux + TypeScript)
 
 A simple and efficient task management application built using **React**, **Redux Toolkit**, and **TypeScript**. This app allows users to add, view, complete, and delete tasks with intuitive UI and smooth animations.
