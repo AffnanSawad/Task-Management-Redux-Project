@@ -79,11 +79,6 @@ src/
 
 ---
 
-## 📦 Deployment
-
-This project is deployed using **Vercel**. You can view the live version [here](https://task-management-redux-project-wb4n.vercel.app/Tasks).
-
----
 
 ## 🙋‍♂️ Author
 
